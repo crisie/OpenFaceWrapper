@@ -1,13 +1,15 @@
 #include "OpenFaceDLL.h"
 
-#include <stdio.h>
-
 #include "OpenFaceWrapper.h"
+
+#include <iostream>
+#include <memory>
+
 
 static std::unique_ptr<OpenFaceWrapper> wrapper;
 
 void testDLL(const int i) {
-	printf("%d\n", i);
+	std::cout << i << '\n';
 }
 
 void loadModel() {
@@ -16,9 +18,9 @@ void loadModel() {
 
 bool trackFace(const char* img, const double* camera_matrix, FACE_INFO* face_info)
 {
-	printf("Tracking image....");
+	std::cout << "Tracking image...." << '\n';
 
-	if (wrapper == NULL)
+	if (wrapper == nullptr)
 	{
 		return false;
 	}
@@ -26,9 +28,3 @@ bool trackFace(const char* img, const double* camera_matrix, FACE_INFO* face_inf
 	return true;
 	
 }
-
-//OpenFaceWrapper* CreateOpenFaceWrapper()
-//{
-//	static OpenFaceWrapper wrapper;
-//	return &wrapper;
-//}

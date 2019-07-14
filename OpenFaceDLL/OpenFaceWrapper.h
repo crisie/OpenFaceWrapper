@@ -1,6 +1,12 @@
-#include "LandmarkCoreIncludes.h"
+#pragma once
+#ifndef OPEN_FACE_WRAPPER_H_
+#define OPEN_FACE_WRAPPER_H_
+
 #include <FaceAnalyser.h>
-#include "Utils.cpp"
+#include <LandmarkCoreIncludes.h>
+
+struct _FACE_INFO;
+using FACE_INFO = _FACE_INFO;
 
 class OpenFaceWrapper
 {
@@ -17,3 +23,4 @@ private:
 	FaceAnalysis::FaceAnalyserParameters face_analysis_params_;
 	FaceAnalysis::FaceAnalyser* face_analyzer_;
 }; 
+#endif // OPEN_FACE_WRAPPER_H_

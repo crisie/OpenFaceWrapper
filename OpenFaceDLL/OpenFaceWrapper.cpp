@@ -1,6 +1,13 @@
-#include <iostream>
 #include "OpenFaceWrapper.h"
 
+#include "OpenFaceDLL.h"
+
+#include <memory>
+
+inline bool pair_compare(const std::pair<std::string, double>& i, const std::pair<std::string, double>& j)
+{
+	return (std::stoi(i.first) < std::stoi(j.first));
+}
 
 OpenFaceWrapper::OpenFaceWrapper()
 {
@@ -27,7 +34,8 @@ bool OpenFaceWrapper::TrackFace(const std::string& img_file, const double* camer
 		// Load image
 		tmp = cv::imread(img_file, cv::IMREAD_COLOR);
 		// Detect landmarks in video, has to be called prior to the following methods
-		success = LandmarkDetector::DetectLandmarksInVideo(tmp, *face_model_, det_parameters_, cv::Mat());
+		cv::Mat dummy;
+		success = LandmarkDetector::DetectLandmarksInVideo(tmp, *face_model_, det_parameters_, dummy);
 	}
 	catch (...) {
 		return false;
@@ -42,7 +50,9 @@ bool OpenFaceWrapper::TrackFace(const std::string& img_file, const double* camer
 	//Landmarks 2D
 	cv::Mat_<double> lndmks2D = face_model_->detected_landmarks;
 	for (int i = 0; i < lndmks2D.cols * lndmks2D.rows; ++i)
+	{
 		info->landmarks2D[i] = lndmks2D.at<double>(i);
+	}
 
 	//	Landmarks 3D
 	cv::Mat_<double> lndmks3D = face_model_->GetShape(camera_matrix[0], camera_matrix[4], camera_matrix[2], camera_matrix[5]);
@@ -53,7 +63,7 @@ bool OpenFaceWrapper::TrackFace(const std::string& img_file, const double* camer
 
 	//Head pose (with appropriate correction for perspective)
 	cv::Vec6d pose = LandmarkDetector::GetPose(*face_model_, camera_matrix[0], camera_matrix[4], camera_matrix[2], camera_matrix[5]);
-	for (int i = 0; i < 3; ++i)
+	for (size_t i = 0; i < 3; ++i)
 	{
 		info->head_position[i] = pose[i];
 		info->head_rotation[i] = pose[i + 3];
@@ -64,18 +74,26 @@ bool OpenFaceWrapper::TrackFace(const std::string& img_file, const double* camer
 	face_analyzer_->PredictStaticAUsAndComputeFeatures(tmp, face_model_->detected_landmarks);
 
 	auto aus_intensity = face_analyzer_->GetCurrentAUsReg();
-	for (int i = 0; i < aus_intensity.size(); ++i)
+	for (size_t i = 0; i < aus_intensity.size(); ++i)
+	{
 		aus_intensity[i].first = aus_intensity[i].first.erase(0, 2);
+	}
 	std::sort(std::begin(aus_intensity), std::end(aus_intensity), pair_compare);
-	for (int i = 0; i < aus_intensity.size(); ++i)
+	for (size_t i = 0; i < aus_intensity.size(); ++i)
+	{
 		info->aus_intensity[i] = aus_intensity[i].second;
+	}
 
 	auto aus_presence = face_analyzer_->GetCurrentAUsClass();
-	for (int i = 0; i < aus_presence.size(); ++i)
+	for (size_t i = 0; i < aus_presence.size(); ++i)
+	{
 		aus_presence[i].first = aus_presence[i].first.erase(0, 2);
+	}
 	std::sort(std::begin(aus_presence), std::end(aus_presence), pair_compare);
-	for (int i = 0; i < aus_presence.size(); ++i)
+	for (size_t i = 0; i < aus_presence.size(); ++i)
+	{
 		info->aus_presence[i] = aus_presence[i].second;
+	}
 
 	return true;
 }
