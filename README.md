@@ -1,12 +1,17 @@
-# Dependency installation
+# OpenFaceWrapper
+
+Wrapping OpenFace into a shared library :sparkles::sparkles:
+
+
+## Dependency installation
 
 Install same dependencies as OpenFace https://github.com/TadasBaltrusaitis/OpenFace/wiki/Unix-Installation
 
-## OpenCv
+### OpenCv
 Same as in OpenFace.
-```
+```bash
 wget https://github.com/opencv/opencv/archive/4.1.0.zip
-sudo unzip 4.1.0.zip
+unzip 4.1.0.zip
 cd opencv-4.1.0
 mkdir build
 cd build
@@ -15,9 +20,9 @@ came --build . -j 4
 sudo make install
 cd ..
 ```
-## Dlib
+### Dlib
 Compared to Openface installation, here we use an additional flag when running cmake.
-```
+```bash
 wget http://dlib.net/files/dlib-19.13.tar.bz2;
 tar xf dlib-19.13.tar.bz2;
 cd dlib-19.13;
@@ -30,17 +35,17 @@ sudo ldconfig
 cd ..
 ```
  
-## OpenFace
+### OpenFace
 Download Openface.
-```
+```bash
 wget https://github.com/TadasBaltrusaitis/OpenFace/archive/OpenFace_2.2.0.zip
-sudo unzip OpenFace_2.2.0.zip
+unzip OpenFace_2.2.0.zip
 ```
 
 
-## OpenFaceWrapper
+## Compile OpenFaceWrapper
 Download and build OpenFaceWrapper to generate shared library .so.
-```
+```bash
 git clone https://github.com/crisie/OpenFaceWrapper.git
 cd OpenFaceWrapper
 mkdir build 
@@ -49,4 +54,4 @@ cmake -D OPENFACE_DIR='your-openface-path' -D CMAKE_CXX_COMPILER=g++-8 -D CMAKE_
 cmake --build . --target OpenFaceWrapper -j 4
 ```
 
-Copy all the open face models and AU_predictors to the folder in which .so is generated.
+Copy all the open face models and AU_predictors to the folder in which you run the app importing the shared lib.
