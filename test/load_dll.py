@@ -6,6 +6,8 @@ import time
 from numpy.ctypeslib import ndpointer
 import cv2 as cv
 
+
+# Ctypes definitions
 landmarks_model_num = 68
 landmarks2D_size = 2*landmarks_model_num
 landmarks3D_size = 3*landmarks_model_num
@@ -30,13 +32,11 @@ class FACE_INFO(Structure):
                 ("aus_presence", aus_presence_array)]
 
 
-
-
+# OpenFace caller
 class Info3DEstimation(object):
-    def __init__(self):
+    def __init__(self, openface_shared_lib_path: str):
         start = time.time()
-        #os.environ['PATH'] = ';'.join([os.environ['PATH'], 'C://Users//Crisi//Documents//OpenFace//OpenFaceRoger//x64//Release'])
-        self.info3D_model = cdll.LoadLibrary("/home/vcrom/Cris/OpenFaceWrapper/OpenFaceDLL/build/libOpenFaceWrapper.so")
+        self.info3D_model = cdll.LoadLibrary(openface_shared_lib_path)
         self.info3D_model.loadModel()
         current = time.time()
         self.counter = 0
@@ -94,11 +94,20 @@ class Info3DEstimation(object):
         return None
 
 
-calib_matrix= [[1.2*720.0, 0.0, 360.0],
+def main(args):
+    path = "/home/vcrom/Cris/OpenFaceWrapper/OpenFaceDLL/build/libOpenFaceWrapper.so"
+    calib_matrix= [[1.2*720.0, 0.0, 360.0],
                [0.0, 1.2*720.0, 288.0],
                [0.0, 0.0, 1.0]]
-meh = Info3DEstimation()
-image = '/home/vcrom/Cris/OpenFaceWrapper/OpenFaceDLL/build/002950.bmp'
-info = meh.get_3Dinformation(image, calib_matrix)
-print(info['landmarks3D'])
-print(info['R'])
+    meh = Info3DEstimation(args.path[0])
+    image = '002950.bmp'
+    info = meh.get_3Dinformation(image, calib_matrix)
+    print(info['landmarks3D'])
+    print(info['R'])
+  
+if __name__== "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description = 'OpenFaceWrapper shared lib test.')
+    parser.add_argument('path', nargs=1, help='Path to OpenFace shared lib.')
+    args = parser.parse_args()
+    main(args)
