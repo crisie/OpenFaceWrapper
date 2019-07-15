@@ -45,7 +45,7 @@ git clone https://github.com/crisie/OpenFaceWrapper.git
 cd OpenFaceWrapper/OpenFaceDLL
 mkdir build 
 cd build
-cmake -D CMAKE_CXX_COMPILER=g++-8 -D CMAKE_C_COMPILER=gcc-8 -D CMAKE_BUILD_TYPE=RELEASE ..
+cmake -D OPENFACE_DIR='your-openface-path' -D CMAKE_CXX_COMPILER=g++-8 -D CMAKE_C_COMPILER=gcc-8 -D CMAKE_BUILD_TYPE=RELEASE ..
 cmake --build . -j 4
 ```
 
