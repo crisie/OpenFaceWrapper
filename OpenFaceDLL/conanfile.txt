@@ -1,9 +1,0 @@
-[requires]
-opencv/3.4.5@conan/stable
-boost/1.70.0@conan/stable
-openblas/0.3.5@conan/stable
-
-[generators]
-cmake_find_package
-
-[options]

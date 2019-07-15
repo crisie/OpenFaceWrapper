@@ -1,3 +1,0 @@
-cd build
-conan remote add conan_community https://api.bintray.com/conan/conan-community/conan
-conan install .. --build=missing
