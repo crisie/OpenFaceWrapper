@@ -46,7 +46,7 @@ cd OpenFaceWrapper
 mkdir build 
 cd build
 cmake -D OPENFACE_DIR='your-openface-path' -D CMAKE_CXX_COMPILER=g++-8 -D CMAKE_C_COMPILER=gcc-8 -D CMAKE_BUILD_TYPE=RELEASE ..
-cmake --build . -j 4
+cmake --build . --target OpenFaceWrapper -j 4
 ```
 
 Copy all the open face models and AU_predictors to the folder in which .so is generated.
