@@ -31,7 +31,7 @@ else()
     MESSAGE("  OpenBLAS_INCLUDE: ${OpenBLAS_INCLUDE_DIR}")
 endif()
 
-find_package( OpenCV 4.0 REQUIRED COMPONENTS core imgproc calib3d highgui objdetect)
+find_package( OpenCV 4.1 REQUIRED COMPONENTS core imgproc calib3d highgui objdetect)
 if(${OpenCV_FOUND})
 	MESSAGE("OpenCV information:") 
 	MESSAGE("  OpenCV_INCLUDE_DIRS: ${OpenCV_INCLUDE_DIRS}") 
@@ -59,7 +59,7 @@ add_library(OpenFaceWrapper SHARED
 	OpenFaceWrapper.cpp)
 
 set_target_properties(OpenFaceWrapper PROPERTIES
-	CXX_STANDARD 14
+	CXX_STANDARD 17
 	CXX_STANDARD_REQUIRED YES)
 
 target_link_libraries(OpenFaceWrapper PUBLIC OpenFace::LandmarkDetector OpenFace::FaceAnalyser)
