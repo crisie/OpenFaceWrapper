@@ -42,7 +42,7 @@ sudo unzip OpenFace_2.2.0.zip
 Download and build OpenFaceWrapper to generate shared library .so.
 ```
 git clone https://github.com/crisie/OpenFaceWrapper.git
-cd OpenFaceWrapper/OpenFaceDLL
+cd OpenFaceWrapper
 mkdir build 
 cd build
 cmake -D OPENFACE_DIR='your-openface-path' -D CMAKE_CXX_COMPILER=g++-8 -D CMAKE_C_COMPILER=gcc-8 -D CMAKE_BUILD_TYPE=RELEASE ..
