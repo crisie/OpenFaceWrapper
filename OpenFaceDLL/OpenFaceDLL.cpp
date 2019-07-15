@@ -24,7 +24,5 @@ bool trackFace(const char* img, const double* camera_matrix, FACE_INFO* face_inf
 	{
 		return false;
 	}
-	wrapper->TrackFace(img, camera_matrix, face_info);
-	return true;
-	
+	return wrapper->TrackFace(img, camera_matrix, face_info);
 }
