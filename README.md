@@ -2,6 +2,7 @@
 
 Wrapping OpenFace into a shared library :sparkles::sparkles:
 
+Follow the instructions below to build the library for Unix environment.
 
 ## Dependency installation
 
