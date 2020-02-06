@@ -4,6 +4,8 @@ Wrapping [OpenFace](https://github.com/TadasBaltrusaitis/OpenFace) into a shared
 
 Follow the instructions below to build the library for [Unix](#unix) or [Windows](#windows) environment.
 
+Compiled library for Windows available at ```compiled_libraries``` folder.
+
 # Unix
 
 ## Dependency installation 
