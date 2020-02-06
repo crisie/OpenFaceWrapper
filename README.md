@@ -2,9 +2,11 @@
 
 Wrapping OpenFace into a shared library :sparkles::sparkles:
 
-Follow the instructions below to build the library for Unix environment.
+Follow the instructions below to build the library for [Unix](#unix) or [Windows](#windows) environment.
 
-## Dependency installation
+# Unix
+
+## Dependency installation 
 
 Install same dependencies as OpenFace https://github.com/TadasBaltrusaitis/OpenFace/wiki/Unix-Installation
 
@@ -55,4 +57,15 @@ cmake -D OPENFACE_DIR='your-openface-path' -D CMAKE_CXX_COMPILER=g++-8 -D CMAKE_
 cmake --build . --target OpenFaceWrapper -j 4
 ```
 
-Copy all the open face models and AU_predictors to the folder in which you run the app importing the shared lib.
+Copy all the OpenFace models and AU_predictors to the folder in which you run the app importing the shared lib.
+
+# Windows
+
+1. Install same dependencies as OpenFace https://github.com/TadasBaltrusaitis/OpenFace/wiki/Windows-Installation.
+
+2. Open Visual Studio project and modify Include directories and Additional Library Directories items according to your paths definitions, so that they point to the 3rd party OpenFace libraries.
+
+3. Build project. It will produce a DLL file in the Release folder.
+
+4. Copy all the OpenFace models and AU_predictors to the folder in which you run the app importing the shared lib.
+
