@@ -1,6 +1,6 @@
 # OpenFaceWrapper
 
-Wrapping OpenFace into a shared library :sparkles::sparkles:
+Wrapping [OpenFace](https://github.com/TadasBaltrusaitis/OpenFace) into a shared library :sparkles::sparkles:
 
 Follow the instructions below to build the library for [Unix](#unix) or [Windows](#windows) environment.
 
