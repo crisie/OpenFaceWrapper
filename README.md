@@ -2,7 +2,7 @@
 
 Wrapping [OpenFace](https://github.com/TadasBaltrusaitis/OpenFace) into a shared library :sparkles::sparkles:
 
-The current code includes a wrapper to extract 3D face landmarks, head position and rotation. Feel free to request a pull with further functionality!
+The current code includes a wrapper to extract 3D face landmarks, head position and rotation, and action units. Feel free to request a pull with further functionality!
 
 Follow the instructions below to build the library for [Unix](#unix) or [Windows](#windows) environment.
 
