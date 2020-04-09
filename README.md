@@ -23,7 +23,7 @@ cd opencv-4.1.0
 mkdir build
 cd build
 cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D BUILD_TIFF=ON -D WITH_TBB=ON -D BUILD_SHARED_LIBS=OFF ..
-came --build . -j 4
+cmake --build . -j 4
 sudo make install
 cd ..
 ```
